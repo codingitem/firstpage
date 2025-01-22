@@ -71,3 +71,9 @@ body {
     font-weight: 300;
     letter-spacing: 0.5px;
  }
+
+.current-page {
+    background-color: #8d99ae;
+    color: #edf2f4 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
