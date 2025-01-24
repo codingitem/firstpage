@@ -20,6 +20,52 @@
 </nav>
        
 <main>
+    <div class="search-section">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="검색어를 입력하세요...">
+            <button id="searchButton">검색</button>
+        </div>
+    </div>
+
+    <section class="featured-posts">
+        <h2 class="section-title">최근 게시물</h2>
+        <div class="post-grid">
+            <article class="post-card">
+                <a href="posts/nusa-dua.html">
+                    <img src="https://images.unsplash.com/photo-1539367628448-4bc5c9d171c8" alt="누사두아 해변">
+                </a>
+                <div class="post-content">
+                    <span class="post-date">2024.03.15</span>
+                    <h3>누사두아의 환상적인 선셋</h3>
+                    <p>발리에서 가장 아름다운 해변 중 하나인 누사두아. 수정처럼 맑은 바다와 새하얀 모래사장, 그리고 로맨틱한 선셋까지...</p>
+                    <a href="posts/nusa-dua.html" class="read-more">더 읽기</a>
+                </div>
+            </article>
+            <article class="post-card">
+                <a href="posts/ubud-rice.html">
+                    <img src="https://images.unsplash.com/photo-1512100356356-de1b84283e18" alt="우붓 라이스 테라스">
+                </a>
+                <div class="post-content">
+                    <span class="post-date">2024.03.13</span>
+                    <h3>우붓의 초록빛 풍경</h3>
+                    <p>계단식 논이 만들어내는 장관, 우붓 라이스 테라스 여행기...</p>
+                    <a href="posts/ubud-rice.html" class="read-more">더 읽기</a>
+                </div>
+            </article>
+            <article class="post-card">
+                <a href="posts/bali-food.html">
+                    <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2" alt="발리 음식">
+                </a>
+                <div class="post-content">
+                    <span class="post-date">2024.03.10</span>
+                    <h3>발리 현지 맛집 탐방</h3>
+                    <p>나시고랭부터 삼발 매티까지, 발리 음식 완전 정복...</p>
+                    <a href="posts/bali-food.html" class="read-more">더 읽기</a>
+                </div>
+            </article>
+        </div>
+    </section>
+    
     <div class="card">
         <img src="https://www.indonesia.travel/content/dam/indtravelrevamp/en/inspiration/travel-info/bali-s-newly-popular-beaches-and-marine-attract/7fd3da28798c179f34e078d56cecc5551dde7e27-8b9ae.157" alt="발리 해변">
         <h2>천국의 해변</h2>
@@ -35,5 +81,45 @@
            © 2025 Vietrest.com All rights reserved.
        </footer>
    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchButton = document.getElementById('searchButton');
+            const postCards = document.querySelectorAll('.post-card');
+
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase();
+                
+                postCards.forEach(card => {
+                    const title = card.querySelector('h3').textContent.toLowerCase();
+                    const content = card.querySelector('p').textContent.toLowerCase();
+                    const category = card.querySelector('.post-category') ? 
+                        card.querySelector('.post-category').textContent.toLowerCase() : '';
+                    
+                    if (title.includes(searchTerm) || 
+                        content.includes(searchTerm) || 
+                        category.includes(searchTerm)) {
+                        card.classList.remove('hidden');
+                    } else {
+                        card.classList.add('hidden');
+                    }
+                });
+            }
+
+            // 검색 버튼 클릭 시 검색 실행
+            searchButton.addEventListener('click', performSearch);
+
+            // Enter 키 입력 시 검색 실행
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    performSearch();
+                }
+            });
+
+            // 검색어 입력 시 실시간 검색 (선택적)
+            searchInput.addEventListener('input', performSearch);
+        });
+    </script>
 </body>
 </html>
